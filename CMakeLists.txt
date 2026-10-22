@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.16)
+project(grid_pathfinder LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_library(pathfinder src/pathfinder.cpp)
+target_include_directories(pathfinder PUBLIC src)
+target_compile_options(pathfinder PRIVATE -Wall -Wextra -Wpedantic)
+
+add_executable(grid_pathfinder src/main.cpp)
+target_link_libraries(grid_pathfinder PRIVATE pathfinder)
+
+include(CTest)
+if(BUILD_TESTING)
+    add_executable(pathfinder_tests tests/test_pathfinder.cpp)
+    target_link_libraries(pathfinder_tests PRIVATE pathfinder)
+    add_test(NAME pathfinder_tests COMMAND pathfinder_tests)
+    add_test(NAME sample_map COMMAND grid_pathfinder ${CMAKE_CURRENT_SOURCE_DIR}/maps/simple.txt)
+    add_test(NAME blocked_map COMMAND grid_pathfinder ${CMAKE_CURRENT_SOURCE_DIR}/maps/blocked.txt)
+endif()
