@@ -88,7 +88,6 @@ grid-pathfinder-cpp/
 │   ├── blocked.txt         No route available
 │   └── maze.txt            Larger sample level
 ├── .github/workflows/ci.yml  Build + tests on GitHub Actions
-├── GHID_RO.md             Romanian setup and interview notes
 ├── LICENSE                MIT license
 ├── .gitignore
 └── README.md
